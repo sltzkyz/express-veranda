@@ -1,0 +1,45 @@
+{
+    "pages": {
+        "home": {
+            "hero": {
+                "brand": "HSM YAPI",
+                "title": "Express Veranda"
+            },
+            "products": {
+                "title": "Ürünlerimiz",
+                "cardText": "Detayları İncele"
+            },
+            "features":{
+                "title": "Neden Biz ?",
+                "cardText": "Detaylar"
+            }
+        }
+    },
+    "about": {
+    "title": "Hakkımızda",
+    "history": "BİZ KİMİZ?",
+    "historyTitle": "Asya'dan Avrupa'ya Uzanan Deneyimimiz",
+    "historyDescription": "Express Veranda olarak, yaşam alanlarına değer katan kış bahçesi ve cam sistemleri alanında Kocaeli’ndeki tesislerimizde faaliyet göstermekteyiz. Her projeyi ihtiyaca özel olarak ele alıyor, farklı sistemleri bir araya getirerek estetik ve fonksiyonel çözümler sunuyoruz.",
+    "historyDescription2": "Planlama aşamasından montaja kadar tüm süreci kendi ekiplerimizle yönetiyor, sahadaki uygulamaları titizlikle gerçekleştiriyoruz. Amacımız, müşterilerimize sürecin başından sonuna kadar düzenli, anlaşılır ve güvenilir bir hizmet sunmaktır.",
+    "historyImage": "/images/hakkimizda.jpg",
+    "vision": "Vizyonumuz",
+    "visionDescription": "Sektörde güvenilirliği ve istikrarlı hizmet anlayışıyla öne çıkan, projeye özel çözümleriyle tercih edilen bir marka olmak.",
+    "mission": "Misyonumuz",
+    "missionDescription": "Müşterilerimize ihtiyaçlarına uygun, fonksiyonel ve estetik çözümler sunmak; proje ve uygulama süreçlerinde şeffaf, düzenli ve güvenilir bir hizmet anlayışı benimsemek.",
+    "yearsOfExperience": "Yıllık Tecrübe",
+    "completedProjects": "Tamamlanan Proje",
+    "customerSatisfaction": "Müşteri Memnuniyeti"
+    },
+"contact": {
+    "title": "İletişim",
+    "subtitle": "BİZE ULAŞIN",
+    "description": "Kış bahçesi, alüminyum veranda ve cam sistemleriyle ilgili bilgi almak, projenize uygun çözümleri değerlendirmek veya sorularınızı iletmek için bizimle iletişime geçebilirsiniz. İhtiyacınızı anlayarak size en uygun yönlendirmeyi yapmayı ve süreci açık bir şekilde ilerletmeyi önemsiyoruz.",
+    "address": "Üretim & Merkez",
+    "addressDetail": "Başiskele, Kocaeli / Türkiye",
+    "phone": "Telefon",
+    "phoneNumber": "+90 (535) 248 86 61",
+    "email": "E-Posta",
+    "emailAddress": "hsmyapicambalkon@gmail.com",
+    "googleMapsPlaceholder": "HARİTA GÖRÜNÜMÜ"
+}
+}

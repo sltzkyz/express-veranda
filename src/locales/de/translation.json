@@ -1,0 +1,45 @@
+{
+    "pages": {
+        "home": {
+            "hero": {
+                "brand": "HSM YAPI",
+                "title": "Express Veranda"
+            },
+            "products": {
+                "title": "Unsere Produkte",
+                "cardText": "Details Ansehen"
+            },
+            "features": {
+                "title": "Warum Wir?",
+                "cardText": "Details"
+            }
+        }
+    },
+    "about": {
+        "title": "Über Uns",
+        "history": "WER SIND WIR?",
+        "historyTitle": "Unsere Erfahrung von Asien bis Europa",
+        "historyDescription": "Als Express Veranda sind wir in unseren Werken in Kocaeli im Bereich Wintergärten und Glassysteme tätig, die Wohnräumen einen Mehrwert verleihen. Wir gehen jedes Projekt bedarfsgerecht an und kombinieren verschiedene Systeme, um ästhetische und funktionale Lösungen anzubieten.",
+        "historyDescription2": "Wir steuern den gesamten Prozess von der Planungsphase bis zur Montage mit unseren eigenen Teams und führen die Anwendungen vor Ort sorgfältig durch. Unser Ziel ist es, unseren Kunden von Anfang bis Ende des Prozesses einen organisierten, klaren und zuverlässigen Service zu bieten.",
+        "historyImage": "/images/hakkimizda.jpg",
+        "vision": "Unsere Vision",
+        "visionDescription": "Eine bevorzugte Marke mit projektspezifischen Lösungen zu sein, die sich in der Branche durch Zuverlässigkeit und einen beständigen Serviceansatz auszeichnet.",
+        "mission": "Unsere Mission",
+        "missionDescription": "Unseren Kunden funktionale und ästhetische Lösungen anzubieten, die ihren Bedürfnissen entsprechen; bei Projekt- und Anwendungsprozessen einen transparenten, organisierten und zuverlässigen Serviceansatz zu verfolgen.",
+        "yearsOfExperience": "Jahre Erfahrung",
+        "completedProjects": "Abgeschlossene Projekte",
+        "customerSatisfaction": "Kundenzufriedenheit"
+    },
+    "contact": {
+        "title": "Kontakt",
+        "subtitle": "KONTAKTIEREN SIE UNS",
+        "description": "Sie können uns kontaktieren, um Informationen über Wintergärten, Aluminium-Pergolen und Glassysteme zu erhalten, geeignete Lösungen für Ihr Projekt zu bewerten oder Ihre Fragen zu stellen. Wir legen Wert darauf, Ihre Bedürfnisse zu verstehen, Sie bestmöglich zu beraten und den Prozess transparent voranzutreiben.",
+        "address": "Produktion & Hauptsitz",
+        "addressDetail": "Başiskele, Kocaeli / Türkiye",
+        "phone": "Telefon",
+        "phoneNumber": "+90 (535) 248 86 61",
+        "email": "E-Mail",
+        "emailAddress": "hsmyapicambalkon@gmail.com",
+        "googleMapsPlaceholder": "KARTENANSICHT"
+    }
+}
