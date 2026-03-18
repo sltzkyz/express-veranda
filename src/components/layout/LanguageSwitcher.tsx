@@ -41,7 +41,7 @@ export default function LanguageSwitcher() {
     // DİL SEÇİLDİĞİNDE ÇALIŞACAK FONKSİYON
     const handleLocaleChange = (locale: string) => {
         // Çerezi (Cookie) ayarla - Next.js i18next middleware'i genellikle 'NEXT_LOCALE' veya 'i18next' ismini bekler
-        document.cookie = `NEXT_LOCALE=${locale}; path=/; max-age=31536000; SameSite=Lax`;
+        document.cookie = `i18next=${locale}; path=/; max-age=31536000; SameSite=Lax`;
         setIsOpen(false);
     }
 
