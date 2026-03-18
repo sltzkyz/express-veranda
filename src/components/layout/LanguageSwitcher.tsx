@@ -6,7 +6,6 @@ import Link from "next/link"
 import { languages } from "@/app/i18n/settings"
 import * as config from '@/lib/config'
 
-// Ortak Noise Bileşeni
 const NoiseOverlay = () => (
     <div 
         className="absolute inset-0 z-25 opacity-20 pointer-events-none mix-blend-overlay bg-repeat"
@@ -39,19 +38,23 @@ export default function LanguageSwitcher() {
         return segments.join("/")
     }
 
+    // DİL SEÇİLDİĞİNDE ÇALIŞACAK FONKSİYON
+    const handleLocaleChange = (locale: string) => {
+        // Çerezi (Cookie) ayarla - Next.js i18next middleware'i genellikle 'NEXT_LOCALE' veya 'i18next' ismini bekler
+        document.cookie = `NEXT_LOCALE=${locale}; path=/; max-age=31536000; SameSite=Lax`;
+        setIsOpen(false);
+    }
+
     const activeLng = languages.find((lng) => pathname?.startsWith(`/${lng}`)) || languages[0]
     const activeLngName = config.languages.find((l) => l.code === activeLng)?.name || activeLng.toUpperCase()
 
     return (
         <div ref={menuRef} className="fixed bottom-6 left-1/2 -translate-x-1/2 z-25 font-sans">
-            
-            {/* Açılır Menü (Yukarı doğru açılır) - Antrasit ve Noise eklendi */}
             <div 
                 className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-40 bg-[#49494E] border border-[#B08D57]/50 rounded-xl shadow-2xl flex flex-col overflow-hidden transition-all duration-300 origin-bottom ${
                     isOpen ? "opacity-100 scale-100 visible" : "opacity-0 scale-95 invisible"
                 }`}
             >
-                {/* Menü İçi Noise ve Işık */}
                 <NoiseOverlay />
                 <div className="absolute inset-0 z-25 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.1)_0%,transparent_70%)] pointer-events-none"></div>
 
@@ -64,7 +67,8 @@ export default function LanguageSwitcher() {
                             <Link
                                 key={lng}
                                 href={redirectedPathName(lng)}
-                                onClick={() => setIsOpen(false)}
+                                // TIKLANDIĞINDA ÇEREZİ KAYDET
+                                onClick={() => handleLocaleChange(lng)}
                                 className={`flex items-center gap-3 px-4 py-3 text-sm font-semibold transition-colors ${
                                     isActive 
                                         ? "bg-[#B08D57]/20 text-white border-l-4 border-[#B08D57]" 
@@ -78,12 +82,10 @@ export default function LanguageSwitcher() {
                 </div>
             </div>
 
-            {/* Ana Tıklama Butonu - Antrasit ve Noise Eklendi */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="relative group flex items-center gap-2 bg-[#49494E] text-white px-5 py-3 rounded-full shadow-xl border border-[#B08D57]/50 hover:border-[#B08D57] transition-all duration-300 cursor-pointer overflow-hidden"
             >
-                {/* Buton İçi Noise ve Işık */}
                 <NoiseOverlay />
                 <div className="absolute inset-0 z-25 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.15)_0%,transparent_70%)] pointer-events-none transition-opacity duration-300 group-hover:opacity-100 opacity-50"></div>
 
@@ -91,7 +93,6 @@ export default function LanguageSwitcher() {
                     {activeLngName}
                 </span>
                 
-                {/* Yön Ok İkonu */}
                 <svg 
                     className={`relative z-25 w-4 h-4 text-[#B08D57] transition-transform duration-300 ${isOpen ? "rotate-180" : "rotate-0"}`} 
                     fill="none" 
