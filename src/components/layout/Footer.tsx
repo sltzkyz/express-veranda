@@ -8,16 +8,12 @@ export default async function Footer({ lng }: { lng: string }) {
     const currentYear = new Date().getFullYear();
     const footerData = footer;
     
-    // Dil dosyasından çevirileri çekiyoruz
     const { t } = await useTranslation(lng);
 
-    // Harita Koordinatları (Sabit)
     const mapLocation = "40.737361,29.964056";
 
-    // Telefon numarasını temizleyip salt rakam yapıyoruz
     const cleanPhone = t('contact.phoneNumber').replace(/\D/g, '');
 
-    // WhatsApp Hazır Mesajları (Dillere göre ve [WEB] ibareli)
     const waMessages: { [key: string]: string } = {
         en: "Hello, I would like to get information about your winter garden systems. [WEB]",
         de: "Hallo, ich hätte gerne Informationen zu Ihren Wintergartensystemen. [WEB]",
@@ -25,7 +21,6 @@ export default async function Footer({ lng }: { lng: string }) {
         tr: "Merhaba, ürünleriniz hakkında bilgi almak istiyorum. [WEB]"
     };
 
-    // Aktif dile göre mesajı seç, dili bulamazsa varsayılan olarak İngilizceyi al ve URL formatına çevir
     const waText = encodeURIComponent(waMessages[lng] || waMessages['en']);
 
     const NoiseOverlay = () => (
@@ -45,7 +40,6 @@ export default async function Footer({ lng }: { lng: string }) {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 mb-12">
 
-                    {/* 1. Kolon: Logo ve Linkler */}
                     <div className="flex flex-col space-y-6">
                         <div className="text-4xl tracking-tight">
                             <span className="font-bold text-[#B08D57]">Express</span>
@@ -53,11 +47,16 @@ export default async function Footer({ lng }: { lng: string }) {
                         </div>
 
                         <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm font-bold text-zinc-100">
-                            {(footerData.links as any)[lng].map((item: any) => (
-                                <Link key={item.link} href={item.link} className="hover:text-[#B08D57] transition-colors">
-                                    {item.name}
-                                </Link>
-                            ))}
+                            {(footerData.links as any)[lng].map((item: any) => {
+                                const isExternal = item.link.startsWith("http") || item.link.startsWith("#");
+                                const localizedLink = isExternal ? item.link : `/${lng}${item.link === "/" ? "" : item.link}`;
+
+                                return (
+                                    <Link key={item.link} href={localizedLink} className="hover:text-[#B08D57] transition-colors">
+                                        {item.name}
+                                    </Link>
+                                );
+                            })}
                         </div>
 
                         <p className="text-sm text-zinc-300 font-medium opacity-70">
@@ -65,10 +64,8 @@ export default async function Footer({ lng }: { lng: string }) {
                         </p>
                     </div>
 
-                    {/* 2. Kolon: İletişim Bilgileri */}
                     <div className="flex flex-col gap-8">
                         
-                        {/* 1. Adres Satırı */}
                         <a 
                             href={`https://www.google.com/maps/d/u/0/embed?mid=1F4gaDe-ErRwdDwtaJkNpoDPHAoaHNGo&ehbc=2E312F&noprof=1&ll=40.74745084661109%2C29.95861975924682&z=175{mapLocation}`}
                             target="_blank" 
@@ -87,7 +84,6 @@ export default async function Footer({ lng }: { lng: string }) {
                             </div>
                         </a>
 
-                        {/* 2. Telefon/WhatsApp Satırı */}
                         <a 
                             href={lng === 'tr' 
                                 ? `tel:+${cleanPhone}` 
@@ -113,7 +109,6 @@ export default async function Footer({ lng }: { lng: string }) {
                             </div>
                         </a>
 
-                        {/* 3. E-Posta Satırı */}
                         <a 
                             href={`mailto:${t('contact.emailAddress')}`}
                             className="cursor-pointer group flex items-center gap-4 transition-all duration-300"
@@ -131,7 +126,6 @@ export default async function Footer({ lng }: { lng: string }) {
                         </a>
                     </div>
 
-                    {/* 3. Kolon: Şirket Hakkında */}
                     <div className="flex flex-col">
                         <h4 className="font-bold text-lg text-white mb-3">
                             {(footerData.about as any)[lng].title}
@@ -143,7 +137,6 @@ export default async function Footer({ lng }: { lng: string }) {
 
                 </div>
 
-                {/* Alt Kısım: Dil Değiştirici */}
                 <div className='flex flex-col md:flex-row items-center justify-between gap-6 pt-8 border-t border-zinc-500/30'>
                     <LanguageSwitcher />
                     <p className="text-xs text-zinc-400 font-medium italic opacity-60">

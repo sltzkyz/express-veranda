@@ -8,7 +8,7 @@ import {
     useMotionValueEvent,
 } from "motion/react";
 import Link from "next/link";
-import { usePathname } from "next/navigation"; // EKLENDİ
+import { usePathname, useParams } from "next/navigation";
 import React, { useRef, useState, useEffect } from "react";
 
 interface NavbarProps {
@@ -51,29 +51,25 @@ interface MobileNavMenuProps {
 
 export const Navbar = ({ children, className }: NavbarProps) => {
     const ref = useRef<HTMLDivElement>(null);
-    const pathname = usePathname(); // EKLENDİ
+    const pathname = usePathname();
     const { scrollY } = useScroll({
         target: ref,
         offset: ["start start", "end start"],
     });
 
-    // ÇÖZÜM: Ana sayfaları belirliyoruz
     const isHomePage = pathname === "/" || pathname === "/tr" || pathname === "/en" || pathname === "/fr" || pathname === "/de";
     
-    // ÇÖZÜM: Ana sayfada değilse varsayılan olarak 'visible' (kompakt) başlar
     const [visible, setVisible] = useState<boolean>(!isHomePage);
 
-    // ÇÖZÜM: Sayfa değiştiğinde kontrol et
     useEffect(() => {
         if (!isHomePage) {
-            setVisible(true); // Ana sayfa değilse hep true (kompakt mod)
+            setVisible(true);
         } else {
-            setVisible(window.scrollY > 100); // Ana sayfadaysa scroll'a göre ayarla
+            setVisible(window.scrollY > 100);
         }
     }, [pathname, isHomePage]);
 
     useMotionValueEvent(scrollY, "change", (latest) => {
-        // ÇÖZÜM: Ana sayfa değilse scroll eventini yoksay ve hep true tut
         if (!isHomePage) {
             setVisible(true);
             return;
@@ -109,9 +105,9 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
             animate={{
                 backdropFilter: visible ? "blur(10px)" : "none",
                 boxShadow: visible
-                    ? "0 10px 30px -10px rgba(0,0,0,0.5)" // Daha koyu ve şık bir gölge
+                    ? "0 10px 30px -10px rgba(0,0,0,0.5)"
                     : "none",
-                width: visible ? "50%" : "100%", // Çok küçülmemesi için 40% yerine 50% yaptım
+                width: visible ? "50%" : "100%",
                 y: visible ? 20 : 0,
             }}
             transition={{
@@ -124,7 +120,6 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
             }}
             className={cn(
                 "relative z-60 mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full px-4 py-2 lg:flex bg-transparent border border-transparent transition-colors duration-300",
-                // Masaüstü barı aşağı kayınca çıkacak olan Antrasit arkaplan ve Vizon çerçeve
                 visible && "bg-[#49494E]/90 border-[#B08D57]/50",
                 className,
             )}
@@ -136,35 +131,39 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
 
 export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
     const [hovered, setHovered] = useState<number | null>(null);
+    const params = useParams();
+    const lng = (params?.lng as string) || "tr"; 
 
     return (
         <motion.div
             onMouseLeave={() => setHovered(null)}
             className={cn(
-                // Neler değişti? 
-                // 1. "absolute inset-0" kodunu sildik (artık havada asılı kalıp ortalanmayacak).
-                // 2. "justify-center" yerine "justify-end" yazdık (sağa yasladık).
                 "hidden flex-1 flex-row items-center justify-end space-x-2 text-sm font-medium text-gray-300 transition duration-200 lg:flex lg:space-x-2",
                 className,
             )}
         >
-            {items.map((item, idx) => (
-                <a
-                    onMouseEnter={() => setHovered(idx)}
-                    onClick={onItemClick}
-                    className="relative px-4 py-2 text-gray-300 hover:text-white transition-colors"
-                    key={`link-${idx}`}
-                    href={item.link}
-                >
-                    {hovered === idx && (
-                        <motion.div
-                            layoutId="hovered"
-                            className="absolute inset-0 h-full w-full rounded-full bg-[#B08D57]"
-                        />
-                    )}
-                    <span className="relative z-20 text-lg font-banter">{item.name}</span>
-                </a>
-            ))}
+            {items.map((item, idx) => {
+                const isExternal = item.link.startsWith("http") || item.link.startsWith("#");
+                const localizedLink = isExternal ? item.link : `/${lng}${item.link === "/" ? "" : item.link}`;
+
+                return (
+                    <Link
+                        onMouseEnter={() => setHovered(idx)}
+                        onClick={onItemClick}
+                        className="relative px-4 py-2 text-gray-300 hover:text-white transition-colors"
+                        key={`link-${idx}`}
+                        href={localizedLink}
+                    >
+                        {hovered === idx && (
+                            <motion.div
+                                layoutId="hovered"
+                                className="absolute inset-0 h-full w-full rounded-full bg-[#B08D57]"
+                            />
+                        )}
+                        <span className="relative z-20 text-lg font-banter">{item.name}</span>
+                    </Link>
+                );
+            })}
         </motion.div>
     );
 };
@@ -190,7 +189,6 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
             }}
             className={cn(
                 "relative z-50 mx-auto rounded-2xl flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between bg-transparent px-0 py-2 lg:hidden border border-transparent transition-colors duration-300",
-                // Mobil bar aşağı inince çıkacak Antrasit ve Vizon sınır
                 visible && "bg-[#49494E]/95 border-[#B08D57]/50",
                 className,
             )}
@@ -200,28 +198,15 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
     );
 };
 
-export const MobileNavHeader = ({
-    children,
-    className,
-}: MobileNavHeaderProps) => {
+export const MobileNavHeader = ({ children, className }: MobileNavHeaderProps) => {
     return (
-        <div
-            className={cn(
-                "flex w-full flex-row items-center justify-between",
-                className,
-            )}
-        >
+        <div className={cn("flex w-full flex-row items-center justify-between", className)}>
             {children}
         </div>
     );
 };
 
-export const MobileNavMenu = ({
-    children,
-    className,
-    isOpen,
-    onClose,
-}: MobileNavMenuProps) => {
+export const MobileNavMenu = ({ children, className, isOpen, onClose }: MobileNavMenuProps) => {
     return (
         <AnimatePresence>
             {isOpen && (
@@ -230,7 +215,6 @@ export const MobileNavMenu = ({
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     className={cn(
-                        // Mobil menü açıldığında çıkan devasa kutu. Rengi Antrasit, kenarlığı Vizon.
                         "absolute inset-x-0 top-19 z-99 flex w-full flex-col items-start justify-start gap-4 rounded-xl px-4 py-8 bg-[#49494E] border border-[#B08D57] shadow-2xl shadow-black/50",
                         className,
                     )}
@@ -242,15 +226,8 @@ export const MobileNavMenu = ({
     );
 };
 
-export const MobileNavToggle = ({
-    isOpen,
-    onClick,
-}: {
-    isOpen: boolean;
-    onClick: () => void;
-}) => {
+export const MobileNavToggle = ({ isOpen, onClick }: { isOpen: boolean; onClick: () => void; }) => {
     return (
-        // Hamburger Menü ve Çarpı ikonu Vizon rengine (#B08D57) çevrildi
         isOpen ? (
             <IconX className="text-[#B08D57] cursor-pointer" onClick={onClick} />
         ) : (
@@ -260,9 +237,12 @@ export const MobileNavToggle = ({
 };
 
 export const NavbarLogo = ({ onClick }: { onClick?: () => void }) => {
+    const params = useParams();
+    const lng = (params?.lng as string) || "tr";
+
     return (
         <Link
-            href="#"
+            href={`/${lng}`}
             className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-white"
         >
             <img
@@ -273,7 +253,6 @@ export const NavbarLogo = ({ onClick }: { onClick?: () => void }) => {
                 alt="logo"
                 className="w-10 h-10 object-contain"
             />
-            {/* Yazı (Marka İsmi) Vizon rengine çevrildi */}
             <h3 className="text-[#B08D57] font-bold text-lg tracking-wider">
                 Express Veranda
             </h3>
@@ -298,6 +277,12 @@ export const NavbarButton = ({
         | React.ComponentPropsWithoutRef<"a">
         | React.ComponentPropsWithoutRef<"button">
     )) => {
+    const params = useParams();
+    const lng = (params?.lng as string) || "tr";
+
+    const isExternal = href?.startsWith("http") || href?.startsWith("#");
+    const localizedHref = href ? (isExternal ? href : `/${lng}${href === "/" ? "" : href}`) : undefined;
+
     const baseStyles =
         "px-4 py-2 rounded-md text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center";
 
@@ -311,7 +296,7 @@ export const NavbarButton = ({
 
     return (
         <Tag
-            href={href || undefined}
+            href={localizedHref}
             className={cn(baseStyles, variantStyles[variant], className)}
             {...props}
         >
