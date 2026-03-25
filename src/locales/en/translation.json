@@ -1,0 +1,45 @@
+{
+    "pages": {
+        "home": {
+            "hero": {
+                "brand": "HSM YAPI",
+                "title": "Express Veranda"
+            },
+            "products": {
+                "title": "Our Products",
+                "cardText": "View Details"
+            },
+            "features": {
+                "title": "Why Us?",
+                "cardText": "Details"
+            }
+        }
+    },
+    "about": {
+        "title": "About Us",
+        "history": "WHO ARE WE?",
+        "historyTitle": "Our Experience Spanning from Asia to Europe",
+        "historyDescription": "As Express Veranda, we operate at our facilities in Kocaeli in the field of winter garden and glass systems that add value to living spaces. We approach each project tailored to its needs, bringing different systems together to offer aesthetic and functional solutions.",
+        "historyDescription2": "We manage the entire process from the planning stage to installation with our own teams, meticulously carrying out on-site applications. Our goal is to provide our customers with an organized, clear, and reliable service from the beginning to the end of the process.",
+        "historyImage": "/images/hakkimizda.jpg",
+        "vision": "Our Vision",
+        "visionDescription": "To be a preferred brand with project-specific solutions, standing out in the sector with reliability and a consistent service approach.",
+        "mission": "Our Mission",
+        "missionDescription": "To offer functional and aesthetic solutions suited to our customers' needs; to adopt a transparent, organized, and reliable service approach in project and application processes.",
+        "yearsOfExperience": "Years of Experience",
+        "completedProjects": "Completed Projects",
+        "customerSatisfaction": "Customer Satisfaction"
+    },
+    "contact": {
+        "title": "Contact",
+        "subtitle": "CONTACT US",
+        "description": "You can contact us to get information about winter gardens, aluminum pergolas, and glass systems, to evaluate solutions suitable for your project, or to send your questions. We care about understanding your needs, guiding you in the best way possible, and advancing the process clearly.",
+        "address": "Production & Headquarters",
+        "addressDetail": "Başiskele, Kocaeli / Türkiye",
+        "phone": "Phone",
+        "phoneNumber": "+90 (535) 248 86 61",
+        "email": "Email",
+        "emailAddress": "hsmyapicambalkon@gmail.com",
+        "googleMapsPlaceholder": "MAP VIEW"
+    }
+}

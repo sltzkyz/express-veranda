@@ -1,0 +1,45 @@
+{
+    "pages": {
+        "home": {
+            "hero": {
+                "brand": "HSM YAPI",
+                "title": "Express Veranda"
+            },
+            "products": {
+                "title": "Nos Produits",
+                "cardText": "Voir les Détails"
+            },
+            "features": {
+                "title": "Pourquoi Nous ?",
+                "cardText": "Détails"
+            }
+        }
+    },
+    "about": {
+        "title": "À Propos de Nous",
+        "history": "QUI SOMMES-NOUS ?",
+        "historyTitle": "Notre Expérience s'étendant de l'Asie à l'Europe",
+        "historyDescription": "En tant qu'Express Veranda, nous opérons dans nos installations à Kocaeli dans le domaine des jardins d'hiver et des systèmes en verre qui ajoutent de la valeur aux espaces de vie. Nous abordons chaque projet en fonction de ses besoins, réunissant différents systèmes pour offrir des solutions esthétiques et fonctionnelles.",
+        "historyDescription2": "Nous gérons l'ensemble du processus, de la phase de planification à l'installation avec nos propres équipes, réalisant méticuleusement les applications sur site. Notre objectif est de fournir à nos clients un service organisé, clair et fiable du début à la fin du processus.",
+        "historyImage": "/images/hakkimizda.jpg",
+        "vision": "Notre Vision",
+        "visionDescription": "Être une marque de choix avec des solutions spécifiques aux projets, se démarquant dans le secteur par sa fiabilité et son approche de service cohérente.",
+        "mission": "Notre Mission",
+        "missionDescription": "Offrir des solutions fonctionnelles et esthétiques adaptées aux besoins de nos clients ; adopter une approche de service transparente, organisée et fiable dans les processus de projet et d'application.",
+        "yearsOfExperience": "Années d'Expérience",
+        "completedProjects": "Projets Réalisés",
+        "customerSatisfaction": "Satisfaction Client"
+    },
+    "contact": {
+        "title": "Contact",
+        "subtitle": "CONTACTEZ-NOUS",
+        "description": "Vous pouvez nous contacter pour obtenir des informations sur les jardins d'hiver, les pergolas en aluminium et les systèmes en verre, pour évaluer les solutions adaptées à votre projet, ou pour soumettre vos questions. Nous tenons à comprendre vos besoins, à vous guider de la meilleure façon possible et à faire avancer le processus de manière claire.",
+        "address": "Production & Siège Social",
+        "addressDetail": "Başiskele, Kocaeli / Türkiye",
+        "phone": "Téléphone",
+        "phoneNumber": "+90 (535) 248 86 61",
+        "email": "E-Mail",
+        "emailAddress": "hsmyapicambalkon@gmail.com",
+        "googleMapsPlaceholder": "VUE CARTE"
+    }
+}
