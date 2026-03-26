@@ -12,6 +12,9 @@
             "features": {
                 "title": "Warum Wir?",
                 "cardText": "Details"
+            },
+            "routeMap": {
+                "title": "Wo wir tätig sind ?"
             }
         }
     },

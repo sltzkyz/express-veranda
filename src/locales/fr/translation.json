@@ -12,6 +12,9 @@
             "features": {
                 "title": "Pourquoi Nous ?",
                 "cardText": "Détails"
+            },
+            "routeMap": {
+                "title": "Où Nous Intervenons ?"
             }
         }
     },

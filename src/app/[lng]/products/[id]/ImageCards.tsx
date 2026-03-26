@@ -6,7 +6,7 @@ export function ImageCardsSection({ lng, images }: { lng: string, images: { url:
     return (
         <div className="w-full flex flex-col items-center py-12">
             <h3 className="text-center text-4xl mb-10 font-bold text-[#49494E]">
-                {lng === 'tr' ? 'Resimler' : 'Images'}
+                {{ tr: 'Resimler', en: 'Images', fr: 'Images', de: 'Bilder' }[lng as string] || 'Images'}
             </h3>
             
             <div className="w-full h-full max-w-7xl mx-auto px-4 sm:px-6">

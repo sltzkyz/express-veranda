@@ -2,6 +2,8 @@ import { useTranslation } from '../i18n'
 import { FeaturesSection } from "@/components/home/Features";
 import { ProductCard } from "@/components/home/ProductCard";
 import { products } from '@/lib/config';
+import { EuropeRouteMap } from '@/components/EuropeRouteMap';
+import { HomeGallery } from '@/components/HomeGallery'; // Dosyayı nereye açtıysan oradan
 
 type Props = {
     params: Promise<{ lng: string }>
@@ -12,7 +14,7 @@ export default async function Page({ params }: Props) {
     const { t } = await useTranslation(lng)
     
     return (
-        <div className="flex flex-col gap-4 items-center">
+        <div className="flex flex-col gap-4 items-center overflow-hidden">
             {/* Hero bileşenine t() ile verileri yolluyoruz */}
             <Hero 
                 heroBrand={t("pages.home.hero.brand")} 
@@ -21,11 +23,12 @@ export default async function Page({ params }: Props) {
 
             <FeaturesSection featureTitle={t("pages.home.features.title")} lng={lng} />
 
-            <h2 className="text-5xl md:text-5xl lg:text-7xl text-center text-balance font-semibold tracking-[-0.015em] text-[#49494E] mt-24">
+            {/* ÜRÜNLER BÖLÜMÜ */}
+            <h2 className="text-5xl md:text-5xl lg:text-7xl text-center text-balance font-semibold tracking-[-0.015em] text-[#49494E] mt-24 px-4">
                 {t("pages.home.products.title")}
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-5 md:p-10" id='products'>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-5 md:p-10 w-full max-w-[1400px]" id='products'>
                 {products.map((product) => (
                     <ProductCard
                         key={product.id}
@@ -41,12 +44,24 @@ export default async function Page({ params }: Props) {
                     />
                 ))}
             </div>
+
+            {/* LOJİSTİK / AVRUPA ROTASI BÖLÜMÜ 
+            <h2 className="text-5xl md:text-5xl lg:text-7xl text-center text-balance font-semibold tracking-[-0.015em] text-[#49494E] mt-24 px-4">
+                {t("pages.home.routeMap.title")}
+            </h2>
+            
+            <div className="w-full pb-24">
+                <EuropeRouteMap />
+            </div>
+            */}
+
+            <HomeGallery lng={lng} />
         </div >
     )
 }
 
 function Hero({ heroBrand, heroTitle }: { heroBrand: string, heroTitle: string }) {
-    // Dil dosyasından gelen "Express Veranda" metnini renk vermek için ilk kelime ve kalanı olarak bölüyoruz
+    // Dil dosyasından gelen metni renk vermek için ilk kelime ve kalanı olarak bölüyoruz
     const [firstWord, ...restWords] = heroTitle.split(' ');
     const restOfTitle = restWords.join(' ');
 

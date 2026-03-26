@@ -12,6 +12,9 @@
             "features":{
                 "title": "Neden Biz ?",
                 "cardText": "Detaylar"
+            },
+            "routeMap": {
+                "title": "Nerelere Hizmet Veriyoruz?"
             }
         }
     },
