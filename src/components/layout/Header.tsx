@@ -3,7 +3,7 @@
 import { MobileNav, MobileNavHeader, MobileNavMenu, MobileNavToggle, Navbar, NavbarButton, NavbarLogo, NavBody, NavItems } from "@/components/ui/resizable-navbar";
 import { navbarItems } from "@/lib/config";
 import Link from "next/link";
-import { useContext, useState } from "react";
+import { useState } from "react";
 
 export default function HeaderComponent({ lng }: { lng: string }) {
 
@@ -19,7 +19,7 @@ export default function HeaderComponent({ lng }: { lng: string }) {
             <Navbar className="z-99">
                 <NavBody>
                     <NavbarLogo />
-                    <NavItems items={navItems} />
+        <NavItems items={navItems} /> 
                 </NavBody>
 
                 <MobileNav className="rounded-lg">
@@ -35,16 +35,27 @@ export default function HeaderComponent({ lng }: { lng: string }) {
                         onClose={() => setIsMobileMenuOpen(false)}
                         className=""
                     >
-                        {navItems.map((item, idx) => (
-                            <Link
-                                key={`mobile-link-${idx}`}
-                                href={item.link}
-                                onClick={() => setIsMobileMenuOpen(false)}
-                                className="relative text-neutral-300"
-                            >
-                                <span className="block font-banter">{item.name}</span>
-                            </Link>
-                        ))}
+                        {navItems.map((item, idx) => {
+                           
+                            const isExternal = item.link.startsWith("http") || item.link.startsWith("#") || item.link.startsWith("mailto:") || item.link.startsWith("tel:");
+                            
+                          
+                            const formattedLink = item.link.startsWith('/') ? item.link : `/${item.link}`;
+                            
+                            
+                            const localizedLink = isExternal ? item.link : `/${lng}${formattedLink === "/" ? "" : formattedLink}`;
+
+                            return (
+                                <Link
+                                    key={`mobile-link-${idx}`}
+                                    href={localizedLink} 
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className="relative text-neutral-300"
+                                >
+                                    <span className="block font-banter">{item.name}</span>
+                                </Link>
+                            );
+                        })}
                     </MobileNavMenu>
                 </MobileNav>
             </Navbar>
