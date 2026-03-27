@@ -187,7 +187,7 @@ export const MobileNavItems = ({ items, className, onItemClick }: NavItemsProps)
                         href={localizedLink}
                         onClick={onItemClick}
                         
-                        className="flex items-center w-full py-4 px-4 text-lg text-gray-200 rounded-lg transition-colors hover:bg-white/5 active:bg-[#B08D57]/20"
+                        className="flex items-center w-full py-4 px-4 text-lg text-gray-200 rounded-lg transition-colors hover:bg-white/5 "
                     >
                         {item.name}
                     </Link>
