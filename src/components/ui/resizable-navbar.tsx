@@ -10,6 +10,7 @@ import {
 import Link from "next/link";
 import { usePathname, useParams } from "next/navigation";
 import React, { useRef, useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 
 interface NavbarProps {
     children: React.ReactNode;
@@ -58,7 +59,7 @@ export const Navbar = ({ children, className }: NavbarProps) => {
     });
 
     const isHomePage = pathname === "/" || pathname === "/tr" || pathname === "/en" || pathname === "/fr" || pathname === "/de";
-    
+
     const [visible, setVisible] = useState<boolean>(!isHomePage);
 
     useEffect(() => {
@@ -132,7 +133,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
 export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
     const [hovered, setHovered] = useState<number | null>(null);
     const params = useParams();
-    const lng = (params?.lng as string) || "tr"; 
+    const lng = (params?.lng as string) || "tr";
 
     return (
         <motion.div
@@ -200,29 +201,63 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
 
 export const MobileNavHeader = ({ children, className }: MobileNavHeaderProps) => {
     return (
-        <div className={cn("flex w-full flex-row items-center justify-between", className)}>
+        <div className={cn("flex w-full flex-row items-center justify-between relative z-[60]", className)}>
             {children}
         </div>
     );
 };
 
 export const MobileNavMenu = ({ children, className, isOpen, onClose }: MobileNavMenuProps) => {
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    useEffect(() => {
+        if (!isOpen) return;
+
+        const handleScroll = () => {
+            onClose();
+        };
+
+        window.addEventListener("scroll", handleScroll, { passive: true });
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, [isOpen, onClose]);
+
     return (
-        <AnimatePresence>
-            {isOpen && (
-                <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    className={cn(
-                        "absolute inset-x-0 top-19 z-99 flex w-full flex-col items-start justify-start gap-4 rounded-xl px-4 py-8 bg-[#49494E] border border-[#B08D57] shadow-2xl shadow-black/50",
-                        className,
-                    )}
-                >
-                    {children}
-                </motion.div>
+        <>
+            {mounted && typeof document !== "undefined" && isOpen && createPortal(
+                <div
+                    className="fixed inset-0 z-[40] bg-black/50 backdrop-blur-sm"
+                    onClick={onClose}
+                />,
+                document.body
             )}
-        </AnimatePresence>
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0, transition: { duration: 0.2, ease: "easeOut" } }}
+                        exit={{ opacity: 0, y: -10, transition: { duration: 0.1, ease: "easeIn" } }}
+                        className={cn(
+                            // container
+                            "absolute inset-x-0 top-19 z-[99] flex w-full flex-col items-stretch justify-start gap-1 rounded-xl px-4 py-1 bg-[#49494E] border border-[#B08D57] shadow-2xl shadow-black/50",
+                            
+                            //link
+                            "[&_a]:flex [&_a]:items-center [&_a]:w-full [&_a]:py-4 [&_a]:px-4 [&_a]:text-lg [&_a]:rounded-lg [&_a]:transition-colors hover:[&_a]:bg-white/5 ",
+                            
+                            className,
+                        )}
+                    >
+                        {children}
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </>
     );
 };
 
@@ -244,12 +279,12 @@ export const NavbarLogo = ({ onClick }: { onClick?: () => void }) => {
         <Link
             href={`/${lng}`}
             className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-white"
+            onClick={onClick}
         >
             <img
                 src="/logo.png"
                 draggable={false}
                 onContextMenu={(e) => e.preventDefault()}
-                onClick={onClick}
                 alt="logo"
                 className="w-10 h-10 object-contain"
             />
@@ -290,7 +325,7 @@ export const NavbarButton = ({
         primary: "bg-white text-black",
         secondary: "bg-transparent text-white",
         dark: "bg-[#49494E] text-white border border-[#B08D57]",
-        vizon: "bg-[#B08D57] text-white hover:bg-[#906C3A]", 
+        vizon: "bg-[#B08D57] text-white hover:bg-[#906C3A]",
         gradient: "bg-gradient-to-b from-[#B08D57] to-[#906C3A] text-white",
     };
 
