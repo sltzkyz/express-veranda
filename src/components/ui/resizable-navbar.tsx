@@ -187,7 +187,7 @@ export const MobileNavItems = ({ items, className, onItemClick }: NavItemsProps)
                         href={localizedLink}
                         onClick={onItemClick}
                         
-                        className="flex items-center w-full py-4 px-4 text-lg text-gray-200 rounded-lg transition-colors hover:bg-white/5"
+                        className="flex items-center w-full py-4 px-4 text-lg text-gray-200 rounded-lg transition-colors hover:bg-white/5 "
                     >
                         {item.name}
                     </Link>
@@ -276,7 +276,7 @@ export const MobileNavMenu = ({ children, className, isOpen, onClose }: MobileNa
                             "absolute inset-x-0 top-19 z-[99] flex w-full flex-col items-stretch justify-start gap-1 rounded-xl px-4 py-1 bg-[#49494E] border border-[#B08D57] shadow-2xl shadow-black/50",
                             
                             // links
-                            "[&_a]:flex [&_a]:items-center [&_a]:w-full [&_a]:py-4 [&_a]:px-4 [&_a]:text-lg [&_a]:rounded-lg [&_a]:transition-colors hover:[&_a]:bg-white/5 active:[&_a]:bg-[#B08D57]/20",
+                            "[&_a]:flex [&_a]:items-center [&_a]:w-full [&_a]:py-4 [&_a]:px-4 [&_a]:text-lg [&_a]:rounded-lg [&_a]:transition-colors hover:[&_a]:bg-white/5",
                             
                             className,
                         )}
