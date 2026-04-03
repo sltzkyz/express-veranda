@@ -155,29 +155,45 @@ export const products = [
             default: index === 0
         })),
     },
-    {
+{
         id: 4,
         title: {
-            en: 'Aluminium Pneumatic Pergola',
-            tr: 'Alüminyum Pnömatik Pergola',
-            fr: 'Pergola Pneumatique en Aluminium',
-            de: 'Pneumatische Aluminium-Pergola',
+            en: 'Bioclimatic Pergola',
+            tr: 'Bioklimatik Pergola',
+            fr: 'Pergola Bioclimatique',
+            de: 'Bioklimatische Pergola',
         },
         description: {
-            tr: 'Alüminyum paneller ve pnömatik sistem ile güneş ışığı ve havalandırma kontrolü sağlar. Dengeli yapısı sayesinde farklı hava koşullarında güvenli kullanım sunar.',
-            en: 'Aluminium pneumatic pergola systems allow controlled management of sunlight and ventilation through adjustable panels. They provide reliable performance across varying weather conditions.',
-            fr: 'Les pergolas pneumatiques en aluminium permettent de contrôler la lumière du soleil et la ventilation grâce à des panneaux ajustables. Elles offrent une performance fiable dans différentes conditions climatiques.',
-            de: 'Pneumatische Aluminium-Pergolen ermöglichen die Steuerung von Sonnenlicht und Belüftung durch verstellbare Paneele. Sie bieten zuverlässige Leistung unter verschiedenen Wetterbedingungen.',
+            tr: 'Kendi ekseninde dönebilen alüminyum lameller sayesinde doğal havalandırma ve optimum güneş ışığı kontrolü sağlar. Tamamen kapandığında su sızdırmaz özelliğiyle mekanlarınıza dört mevsim konfor sunar.',
+            en: 'Provides natural ventilation and optimal sunlight control through aluminum louvers that rotate on their own axis. When fully closed, its waterproof design offers four-season comfort to your spaces.',
+            fr: 'Offre une ventilation naturelle et un contrôle optimal de la lumière du soleil grâce à des lames en aluminium orientables. Une fois complètement fermée, sa conception étanche offre un confort quatre saisons à vos espaces.',
+            de: 'Bietet natürliche Belüftung und optimale Sonnenlichtsteuerung durch drehbare Aluminiumlamellen auf der eigenen Achse. Im vollständig geschlossenen Zustand bietet das wasserdichte Design ganzjährigen Komfort für Ihre Räume.',
         },
         tags: [
-            { icon: <FaBars />, name: { en: 'Aluminium Panels', tr: 'Alüminyum Paneller', fr: 'Panneaux en Aluminium', de: 'Aluminiumpaneele' }, description: { en: '', tr: '', fr: '', de: '' } },
-            { icon: <FaWind />, name: { en: 'Ventilation Control', tr: 'Havalandırma Kontrolü', fr: 'Contrôle de Ventilation', de: 'Belüftungssteuerung' }, description: { en: '', tr: '', fr: '', de: '' } },
-            { icon: <FaSliders />, name: { en: 'Pneumatic System', tr: 'Pnömatik Sistem', fr: 'Système Pneumatique', de: 'Pneumatisches System' }, description: { en: '', tr: '', fr: '', de: '' } },
-            { icon: <FaCloudSunRain />, name: { en: 'Weather Adaptable', tr: 'Hava Koşullarına Uyumlu', fr: 'Adapté aux Conditions Climatiques', de: 'Wetteranpassung' }, description: { en: '', tr: '', fr: '', de: '' } }
+            { 
+                icon: <FaBars />, 
+                name: { en: 'Rotating Louvers', tr: 'Hareketli Lameller', fr: 'Lames Orientables', de: 'Drehbare Lamellen' }, 
+                description: { en: '', tr: '', fr: '', de: '' } 
+            },
+            { 
+                icon: <FaWind />, 
+                name: { en: 'Natural Ventilation', tr: 'Doğal Havalandırma', fr: 'Ventilation Naturelle', de: 'Natürliche Belüftung' }, 
+                description: { en: '', tr: '', fr: '', de: '' } 
+            },
+            { 
+                icon: <FaSliders />, 
+                name: { en: 'Smart Control', tr: 'Akıllı Kontrol', fr: 'Contrôle Intelligent', de: 'Intelligente Steuerung' }, 
+                description: { en: '', tr: '', fr: '', de: '' } 
+            },
+            { 
+                icon: <FaCloudSunRain />, 
+                name: { en: 'All-Season Comfort', tr: 'Dört Mevsim Konfor', fr: 'Confort 4 Saisons', de: 'Ganzjähriger Komfort' }, 
+                description: { en: '', tr: '', fr: '', de: '' } 
+            }
         ],
-        images: productImages.pergola.pno.map((imageObj, index) => ({
+        images: productImages.pergola.pno.map((imageObj, index) => ({ // Eğer resim yolun "pno" ise burayı "productImages.pergola.pno" olarak değiştirebilirsin
             url: imageObj.url,
-            alt: `Alüminyum Pnömatik Pergola Görseli ${index + 1}`,
+            alt: `Bioklimatik Pergola Görseli ${index + 1}`,
             class: index === 0 ? "md:col-span-1" : "",
             default: index === 0
         })),

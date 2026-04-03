@@ -2,6 +2,7 @@
 
 import React from "react";
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
+import Image from "next/image";
 
 export function ProductCard({
     title,
@@ -22,10 +23,10 @@ export function ProductCard({
         <CardContainer className="inter-var w-full inline-block">
             <CardBody className="relative group/card hover:shadow-2xl shadow-black/10 bg-[#49494E] border-2 border-[#B08D57]/60 w-full min-h-[580px] h-full rounded-xl p-5 md:p-6 overflow-hidden flex flex-col">
                 
-                {/* 1. KATMAN: Radial Işık */}
+               
                 <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.25)_0%,transparent_80%)] pointer-events-none transition-opacity duration-500 group-hover/card:opacity-70"></div>
 
-                {/* 2. KATMAN: SAF SVG NOISE */}
+              
                 <div 
                     className="absolute inset-0 z-0 opacity-30 pointer-events-none mix-blend-overlay bg-repeat"
                     style={{ 
@@ -35,7 +36,7 @@ export function ProductCard({
                 ></div>
 
                 <div className="relative z-10 flex flex-col flex-grow">
-                    {/* Başlık */}
+                  
                     <CardItem
                         translateZ="50"
                         className="text-xl md:text-2xl font-bold text-[#B08D57] group-hover/card:text-white transition-colors duration-300"
@@ -43,7 +44,7 @@ export function ProductCard({
                         {title}
                     </CardItem>
                     
-                    {/* Tagler */}
+                 
                     <div className="flex flex-wrap gap-2 items-center mt-3">
                         {tags.map((tag) => (
                             <CardItem
@@ -73,10 +74,11 @@ export function ProductCard({
                     {/* Alt Alan (Resim ve Buton) */}
                     <div className="mt-auto pt-6 flex flex-col gap-6">
                         <CardItem translateZ="100" className="w-full">
-                            <img
+                            <Image
                                 src={image}
                                 height="1000"
                                 width="1000"
+                                quality={50}
                                 className="h-48 md:h-56 w-full object-cover rounded-xl group-hover/card:shadow-2xl border border-white/10 grayscale-[20%] group-hover/card:grayscale-0 transition-all duration-500"
                                 alt={title}
                             />

@@ -32,7 +32,7 @@ export const WobbleCard = ({
         setMousePosition({ x: 0, y: 0 });
       }}
       className={cn(
-        "mx-auto w-full relative rounded-2xl overflow-hidden bg-[#49494E]", // Varsayılan antrasit rengini buraya çektik
+        "mx-auto w-full relative rounded-2xl overflow-hidden bg-[#49494E]", 
         containerClassName
       )}
     >
@@ -43,10 +43,10 @@ export const WobbleCard = ({
             "0 10px 32px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.1)",
         }}
       >
-        {/* ÇÖZÜM: Karmaşık radial gradient yerine senin tasarladığın temiz ışık katmanı */}
+    
         <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.25)_0%,transparent_70%)] pointer-events-none transition-opacity duration-500 group-hover:opacity-70" />
         
-        {/* ÇÖZÜM: Kayma yapan eski Noise yerine senin hatasız SVG Noise yapın */}
+      
         <div 
           className="absolute inset-0 z-0 opacity-30 pointer-events-none mix-blend-overlay bg-repeat"
           style={{ 
@@ -71,4 +71,3 @@ export const WobbleCard = ({
   );
 };
 
-// Eski Noise fonksiyonu tamamen kaldırıldı, gerek kalmadı.

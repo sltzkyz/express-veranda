@@ -13,6 +13,7 @@ export function ImageCardsSection({ lng, images }: { lng: string, images: { url:
                 <LayoutGrid cards={images.map((image, index) => ({
                     id: index + 1,
                     className: image.class,
+                    quality: 100,
                     content: <div />,
                     thumbnail: image.url,
                 }))} />

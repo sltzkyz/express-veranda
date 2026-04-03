@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import HeaderComponent from "@/components/layout/Header";
 import { useLayoutEffect } from "react";

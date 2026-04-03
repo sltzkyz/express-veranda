@@ -18,10 +18,9 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
     const renderTimeout = useRef<NodeJS.Timeout | null>(null);
 
     const goToTargetIndex = (index: number, behavior: ScrollBehavior = "smooth") => {
-        // ÇÖZÜM: Sonsuz döngü mantığı
         let targetIndex = index;
-        if (targetIndex < 0) targetIndex = cards.length - 1; // Baştan geriye basılırsa sona git
-        if (targetIndex >= cards.length) targetIndex = 0;    // Sondan ileri basılırsa başa dön
+        if (targetIndex < 0) targetIndex = cards.length - 1; 
+        if (targetIndex >= cards.length) targetIndex = 0;    
         
         isProgrammaticScroll.current = true;
         setSelectedIndex(targetIndex);
@@ -52,7 +51,7 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
         };
         window.addEventListener("keydown", handleKeyDown);
         return () => window.removeEventListener("keydown", handleKeyDown);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    
     }, [selectedIndex]);
 
     const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
@@ -92,7 +91,7 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
                             src={card.thumbnail}
                             alt={`Express Veranda ${card.id}`}
                             fill
-                            quality={75}
+                            quality={50}
                             sizes="(max-width: 768px) 50vw, 33vw"
                             priority={i < 6}
                             className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -128,7 +127,8 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
                         {cards.map((card) => (
                             <div 
                                 key={`full-${card.id}`}
-                                className="w-screen h-screen flex-shrink-0 snap-center flex justify-center items-center p-4 md:p-12"
+                                
+                                className="w-screen h-screen flex-shrink-0 snap-center snap-always flex justify-center items-center p-4 md:p-12"
                                 onClick={closeGallery} 
                             >
                                 <Image
@@ -136,7 +136,7 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
                                     alt={`Express Veranda ${card.id}`}
                                     width={1920}
                                     height={1080}
-                                    quality={95}
+                                    quality={100}
                                     priority
                                     className="w-auto h-auto max-w-full max-h-[85vh] object-contain shadow-2xl"
                                     onClick={(e) => e.stopPropagation()} 

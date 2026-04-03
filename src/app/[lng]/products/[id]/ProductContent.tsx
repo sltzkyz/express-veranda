@@ -14,7 +14,7 @@ export default function ProductContent({ params, technicTitle }: { params: { id:
         return (
             <div className="flex flex-col items-center justify-center min-h-[60vh]">
                 <p className="text-neutral-500 mb-4">
-                    {params.lng === 'tr' ? 'Veranda modeli bulunamadı.' : 'Product model not found.'}
+                    {params.lng === 'tr' ? 'Ürün modeli bulunamadı.' : 'Product model not found.'}
                 </p>
                 <Link href={`/${params.lng}`} className="underline text-blue-600">
                     {params.lng === 'tr' ? 'Ana sayfaya dön' : 'Back to home'}
@@ -37,23 +37,22 @@ export default function ProductContent({ params, technicTitle }: { params: { id:
     return (
         <main className="max-w-5xl mx-auto pt-42 px-4 py-8 flex flex-col gap-10">
 
-            {/* Ürün Başlığı, Rozetler ve Açıklama Alanı */}
+       
             <div className="flex flex-col gap-4 text-center items-center max-w-3xl mx-auto">
                 <h1 className="text-4xl md:text-5xl font-extrabold text-[#49494E] tracking">
                     {(product.title as any)[params.lng]}
                 </h1>
 
-                {/* Premium Rozetler (Tagler) */}
+           
                 <div className="flex flex-wrap justify-center gap-3 mt-4">
                     {product.tags.map((tag) => (
                         <div
                             key={`simple-${tag.name}`}
                             className="relative overflow-hidden inline-flex items-center justify-center bg-[#49494E] border border-[#B08D57]/50 shadow-sm px-4 py-1.5 rounded-full text-sm font-medium tracking-wide group hover:border-[#B08D57] transition-all duration-300 hover:-translate-y-0.5 cursor-pointer"
                         >
-                            {/* 1. Katman: Radial Işık */}
-                            <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.15)_0%,transparent_70%)] pointer-events-none transition-opacity duration-500 group-hover:opacity-70"></div>
                             
-                            {/* 2. Katman: SVG Noise (Kumlanma) */}
+                            <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.15)_0%,transparent_70%)] pointer-events-none transition-opacity duration-500 group-hover:opacity-70"></div>
+                        
                             <div 
                                 className="absolute inset-0 z-0 opacity-30 pointer-events-none mix-blend-overlay bg-repeat"
                                 style={{ 
@@ -62,7 +61,7 @@ export default function ProductContent({ params, technicTitle }: { params: { id:
                                 }}
                             ></div>
 
-                            {/* İçerik: İkon ve Yazı */}
+                         
                             <div className="relative z-10 flex items-center gap-2 text-zinc-100 group-hover:text-[#B08D57] transition-colors duration-300">
                                 {tag.icon && (
                                     <span className="text-[#B08D57] [&>svg]:w-3.5 [&>svg]:h-3.5">

@@ -3,7 +3,6 @@ import "../globals.css";
 import "aos/dist/aos.css";
 import LayoutIndex from "@/components/layout/Index";
 
-// ÇÖZÜM: Hatasız ve güncel SmoothScrolling bileşeni eklendi
 import SmoothScrolling from "@/components/LenisScrolling"; 
 
 import { dir } from 'i18next';
@@ -61,10 +60,10 @@ export default async function RootLayout({
                 <meta charSet="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </head>
-            {/* ÇÖZÜM: 'style={{ scrollBehavior: 'smooth' }}' silindi, Lenis ile çakışması önlendi */}
+         
             <body className={`antialiased flex flex-col min-h-screen`} suppressHydrationWarning={true}>
                 
-                {/* ÇÖZÜM: Tüm site içeriğini pürüzsüz kaydırma motoruyla sarıyoruz */}
+               
                 <SmoothScrolling>
                     <LayoutIndex lng={lng}>
                         {children}

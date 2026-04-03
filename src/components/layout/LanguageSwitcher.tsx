@@ -38,9 +38,7 @@ export default function LanguageSwitcher() {
         return segments.join("/")
     }
 
-    // DİL SEÇİLDİĞİNDE ÇALIŞACAK FONKSİYON
     const handleLocaleChange = (locale: string) => {
-        // Çerezi (Cookie) ayarla - Next.js i18next middleware'i genellikle 'NEXT_LOCALE' veya 'i18next' ismini bekler
         document.cookie = `i18next=${locale}; path=/; max-age=31536000; SameSite=Lax`;
         setIsOpen(false);
     }
@@ -67,8 +65,8 @@ export default function LanguageSwitcher() {
                             <Link
                                 key={lng}
                                 href={redirectedPathName(lng)}
-                                // TIKLANDIĞINDA ÇEREZİ KAYDET
                                 onClick={() => handleLocaleChange(lng)}
+                                scroll={false}
                                 className={`flex items-center gap-3 px-4 py-3 text-sm font-semibold transition-colors ${
                                     isActive 
                                         ? "bg-[#B08D57]/20 text-white border-l-4 border-[#B08D57]" 
